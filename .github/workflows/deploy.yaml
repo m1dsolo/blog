@@ -1,0 +1,32 @@
+name: Deploy with Hugo
+ 
+on:
+  push:
+    branches:
+      - main
+ 
+jobs:
+  build-deploy:
+    runs-on: self-hosted
+    permissions:
+      contents: write
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: true
+        fetch-depth: 0
+
+    - name: Setup
+      uses: peaceiris/actions-hugo@v2
+      with:
+        hugo_version: 'latest'
+
+    - name: Build
+      run: hugo --minify
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public
