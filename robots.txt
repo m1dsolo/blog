@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: http://m1dsolo.xyz/sitemap.xml
