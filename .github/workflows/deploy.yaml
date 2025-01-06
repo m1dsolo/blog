@@ -7,9 +7,8 @@ on:
  
 jobs:
   build-deploy:
-    runs-on: self-hosted
-    permissions:
-      contents: write
+    # runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
@@ -25,8 +24,11 @@ jobs:
     - name: Build
       run: hugo --minify
 
-    - name: Deploy
+    - name: Deploy Github
       uses: peaceiris/actions-gh-pages@v4
+      if: github.ref == 'refs/heads/main'
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./public
+        external_repository: m1doslo/m1doslo.github.io
+        # cname: www.m1dsolo.xyz
