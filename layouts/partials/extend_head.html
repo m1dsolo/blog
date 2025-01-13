@@ -1,0 +1,8 @@
+{{ if .Site.Params.busuanzi.enable }}
+    <script async data-api="https://m1dsolo.xyz/api" src="https://m1dsolo.xyz/js"></script>
+{{ end }}
+
+{{ template "_internal/google_analytics.html" . }}
+{{ if or .Params.math .Site.Params.math }}
+    {{ partialCached "math.html" . }}
+{{ end }}
