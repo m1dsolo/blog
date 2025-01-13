@@ -1,0 +1,193 @@
+baseURL: "https://m1dsolo.xyz/"
+defaultContentLanguage: zh-cn
+languageCode: zh-CN
+title: m1dsolo's blog
+pagination.pagerSize: 5
+theme: [hugo-notice, PaperMod]
+
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+params:
+  env: production # to enable google analytics, opengraph, twitter-cards and schema.
+  title: m1dsolo's blog
+  description: "m1dsolo's blog"
+  keywords: [m1dsolo, blog]
+  author: m1dsolo
+  # author: ["Me", "You"] # multiple authors
+  images: ["<link or path of image for opengraph, twitter-cards>"]
+  DateFormat: "2006-1-2"
+  defaultTheme: auto # dark, light
+  disableThemeToggle: false
+
+  ShowReadingTime: false
+  ShowShareButtons: false
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowWordCount: true
+  ShowRssButtonInSectionTermList: false
+  UseHugoToc: true
+  disableSpecial1stPost: false
+  disableScrollToTop: false
+  comments: true
+  hidemeta: false
+  hideSummary: false
+  hideAuthor: true
+  showtoc: true
+  tocopen: true
+  hideFooter: true
+
+  assets:
+    favicon: "favicon.ico"
+    favicon16x16: "favicon.ico"
+    favicon32x32: "favicon.ico"
+    apple_touch_icon: "favicon.ico"
+    safari_pinned_tab: "favicon.ico"
+
+  label:
+    text: "主页"
+    # icon: /apple-touch-icon.png
+    # iconHeight: 35
+
+  profileMode:
+    enabled: true # needs to be explicitly set
+    title: m1dsolo
+    subtitle: "欢迎来到我的博客～"
+    imageUrl: "image/avatar.jpeg"
+    imageWidth: 120
+    imageHeight: 120
+    imageTitle: my avatar
+    buttons:
+      - name: 文章
+        url: posts
+      - name: 标签
+        url: tags
+      - name: 搜索
+        url: search
+
+  # home-info mode
+  # homeInfoParams:
+  #   Title: "Hi there \U0001F44B"
+  #   Content: Welcome to my blog!
+
+  socialIcons:
+    - name: github
+      url: "https://github.com/m1dsolo"
+
+  analytics:
+    google:
+      SiteVerificationTag: "XYZabc"
+    bing:
+      SiteVerificationTag: "XYZabc"
+    yandex:
+      SiteVerificationTag: "XYZabc"
+
+  cover:
+    hidden: true # hide everywhere but not in structured data
+    hiddenInList: true # hide on list pages and home
+    hiddenInSingle: true # hide on single page
+
+  # editPost:
+  #   URL: "https://github.com/m1dsolo/blog/blob/main/content"
+  #   Text: "Suggest Changes" # edit text
+  #   appendFilePath: true # to append file path to Edit link
+
+  # for search
+  # https://fusejs.io/api/options.html
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    limit: 10 # refer: https://www.fusejs.io/api/methods.html#search
+    keys: ["title", "permalink", "summary", "content"]
+
+  giscus:
+    repo: "m1dsolo/m1dsolo.github.io"
+    repoId: "R_kgDONmlNVQ"
+    category: "Announcements"
+    categoryId: "DIC_kwDONmlNVc4Cm94p"
+    mapping: "pathname"
+    strict: 0
+    reactionsEnabled: 1
+    emitMetadata: 0
+    inputPosition: "bottom"
+    theme: "preferred_color_scheme"
+    lang: "zh-CN"
+    crossorigin: "anonymous"
+
+  # pv and uv statistics
+  busuanzi:
+    enable: true
+
+  math: false
+
+  # for PaperMod search
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    # limit: 10 # refer: https://www.fusejs.io/api/methods.html#search
+    keys: ["title", "permalink", "summary", "content"]
+
+menu:
+  main:
+    - identifier: posts
+      name: 文章
+      url: /posts/
+      weight: 10
+    - identifier: tags
+      name: 标签
+      url: /tags/
+      weight: 20
+    - identifier: search
+      name: 搜索
+      url: /search/
+      weight: 30
+
+# Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
+pygmentsUseClasses: true
+markup:
+  highlight:
+    noClasses: false
+    # anchorLineNos: true
+    # codeFences: true
+    # guessSyntax: true
+    # lineNos: true
+    # style: monokai
+
+  goldmark:
+    extensions:
+      passthrough:
+        delimiters:
+          block:
+          - - \[
+            - \]
+          - - $$
+            - $$
+          inline:
+          - - \(
+            - \)
+        enable: true
+
+# https://github.com/adityatelange/hugo-PaperMod/wiki/Features#search-page
+outputs:
+  home:
+    - HTML
+    - JSON # necessary for search
+
+services:
+  googleAnalytics:
+    id: G-3G6QXPCTL9
