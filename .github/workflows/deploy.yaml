@@ -1,0 +1,48 @@
+name: Deploy
+ 
+on:
+  push:
+    branches:
+      - main
+ 
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: true
+        fetch-depth: 1
+
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v3
+      with:
+        hugo-version: 'latest'
+        extended: true
+
+    - name: Build for Github
+      run: hugo --minify -b https://m1dsolo.github.io/
+
+    - name: Deploy Github
+      uses: peaceiris/actions-gh-pages@v4
+      if: github.ref == 'refs/heads/main'
+      with:
+        personal_token: ${{ secrets.PERSONAL_TOKEN }}
+        external_repository: m1dsolo/m1dsolo.github.io
+        publish_branch: main
+        publish_dir: ./public
+
+    - name: Build for Server
+      run: hugo --minify -b https://m1dsolo.xyz/
+
+    - name: Deploy Server
+      uses: wlixcc/SFTP-Deploy-Action@v1.2.5
+      if: github.ref == 'refs/heads/main'
+      with:
+        username: root
+        server: ${{ secrets.SERVER_IP }}
+        ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+        local_path: ./public/*
+        remote_path: /var/www/blog
+        sftpArgs: '-o ConnectTimeout=5'
